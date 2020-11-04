@@ -1,0 +1,17 @@
+$molecule
+
+
+2
+
+H 0.0 0.0 0.0
+H 0.0 0.0 3.2
+
+$calcParams
+
+basis = STO-6G
+uhf = 0
+tol = 0.00001
+alphaElecs = 2
+betaElecs = 0
+maxIters = 1000
+diisNum = 6

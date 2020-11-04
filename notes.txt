@@ -1,0 +1,19 @@
+module load intel/2017.0.098 Boost/1.63.0-intel-2016.0.109 Anaconda2/4.3.0
+
+ icpc diis.c read.c scf.c vector.c basis.c matrixElts.c makeMats.c matOps.c main.c -o main \
+-std=standard -DMKL_LP64 -w0 -O2 -lm \
+-I/global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/include \
+-Wl,--start-group \
+ /global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/lib/intel64/libmkl_intel_lp64.a \
+ /global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/lib/intel64/libmkl_intel_thread.a \
+ /global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/lib/intel64/libmkl_core.a \
+ -Wl,--end-group /global/software/icc/2017.0.098/lib/intel64/libiomp5.a -lpthread
+ 
+ icpc diis.c read.c scf.c vector.c basis.c matrixElts.c makeMats.c matOps.c calc.c -o calc \
+-std=standard -DMKL_LP64 -w0 -O2 -lm \
+-I/global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/include \
+-Wl,--start-group \
+ /global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/lib/intel64/libmkl_intel_lp64.a \
+ /global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/lib/intel64/libmkl_intel_thread.a \
+ /global/software/imkl/2017.0.098-iimpi-2017.0.098/mkl/lib/intel64/libmkl_core.a \
+ -Wl,--end-group /global/software/icc/2017.0.098/lib/intel64/libiomp5.a -lpthread

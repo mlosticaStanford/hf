@@ -1,0 +1,19 @@
+$molecule
+
+
+4
+
+H 0.0 0.0 0.0
+H 0.0 0.0 1.4
+H 0.0 0.0 2.8
+H 0.0 0.0 5.0
+
+$calcParams
+
+basis = sto3g
+type = uhf
+tol = 0.00001
+alphaElecs = 2
+betaElecs = 2
+maxIters = 1000
+mix = zero
