@@ -9,7 +9,7 @@ H 0.0 0.0 3.2
 $calcParams
 
 basis = STO-3G
-uhf = 0
+uhf = 1
 tol = 0.000000001
 alphaElecs = 1
 betaElecs = 1

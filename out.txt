@@ -1,6 +1,2006 @@
-params->uhf = 0
+params->uhf = 1
 params->tol= 0.000000001
 params->aElecs= 1
 params->bElecs= 1
 iters = 0
+doing uhf
 iters = 1
+doing uhf
+iters = 2
+doing uhf
+iters = 3
+doing uhf
+iters = 4
+doing uhf
+iters = 5
+doing uhf
+iters = 6
+doing uhf
+iters = 7
+doing uhf
+iters = 8
+doing uhf
+iters = 9
+doing uhf
+iters = 10
+doing uhf
+iters = 11
+doing uhf
+iters = 12
+doing uhf
+iters = 13
+doing uhf
+iters = 14
+doing uhf
+iters = 15
+doing uhf
+iters = 16
+doing uhf
+iters = 17
+doing uhf
+iters = 18
+doing uhf
+iters = 19
+doing uhf
+iters = 20
+doing uhf
+iters = 21
+doing uhf
+iters = 22
+doing uhf
+iters = 23
+doing uhf
+iters = 24
+doing uhf
+iters = 25
+doing uhf
+iters = 26
+doing uhf
+iters = 27
+doing uhf
+iters = 28
+doing uhf
+iters = 29
+doing uhf
+iters = 30
+doing uhf
+iters = 31
+doing uhf
+iters = 32
+doing uhf
+iters = 33
+doing uhf
+iters = 34
+doing uhf
+iters = 35
+doing uhf
+iters = 36
+doing uhf
+iters = 37
+doing uhf
+iters = 38
+doing uhf
+iters = 39
+doing uhf
+iters = 40
+doing uhf
+iters = 41
+doing uhf
+iters = 42
+doing uhf
+iters = 43
+doing uhf
+iters = 44
+doing uhf
+iters = 45
+doing uhf
+iters = 46
+doing uhf
+iters = 47
+doing uhf
+iters = 48
+doing uhf
+iters = 49
+doing uhf
+iters = 50
+doing uhf
+iters = 51
+doing uhf
+iters = 52
+doing uhf
+iters = 53
+doing uhf
+iters = 54
+doing uhf
+iters = 55
+doing uhf
+iters = 56
+doing uhf
+iters = 57
+doing uhf
+iters = 58
+doing uhf
+iters = 59
+doing uhf
+iters = 60
+doing uhf
+iters = 61
+doing uhf
+iters = 62
+doing uhf
+iters = 63
+doing uhf
+iters = 64
+doing uhf
+iters = 65
+doing uhf
+iters = 66
+doing uhf
+iters = 67
+doing uhf
+iters = 68
+doing uhf
+iters = 69
+doing uhf
+iters = 70
+doing uhf
+iters = 71
+doing uhf
+iters = 72
+doing uhf
+iters = 73
+doing uhf
+iters = 74
+doing uhf
+iters = 75
+doing uhf
+iters = 76
+doing uhf
+iters = 77
+doing uhf
+iters = 78
+doing uhf
+iters = 79
+doing uhf
+iters = 80
+doing uhf
+iters = 81
+doing uhf
+iters = 82
+doing uhf
+iters = 83
+doing uhf
+iters = 84
+doing uhf
+iters = 85
+doing uhf
+iters = 86
+doing uhf
+iters = 87
+doing uhf
+iters = 88
+doing uhf
+iters = 89
+doing uhf
+iters = 90
+doing uhf
+iters = 91
+doing uhf
+iters = 92
+doing uhf
+iters = 93
+doing uhf
+iters = 94
+doing uhf
+iters = 95
+doing uhf
+iters = 96
+doing uhf
+iters = 97
+doing uhf
+iters = 98
+doing uhf
+iters = 99
+doing uhf
+iters = 100
+doing uhf
+iters = 101
+doing uhf
+iters = 102
+doing uhf
+iters = 103
+doing uhf
+iters = 104
+doing uhf
+iters = 105
+doing uhf
+iters = 106
+doing uhf
+iters = 107
+doing uhf
+iters = 108
+doing uhf
+iters = 109
+doing uhf
+iters = 110
+doing uhf
+iters = 111
+doing uhf
+iters = 112
+doing uhf
+iters = 113
+doing uhf
+iters = 114
+doing uhf
+iters = 115
+doing uhf
+iters = 116
+doing uhf
+iters = 117
+doing uhf
+iters = 118
+doing uhf
+iters = 119
+doing uhf
+iters = 120
+doing uhf
+iters = 121
+doing uhf
+iters = 122
+doing uhf
+iters = 123
+doing uhf
+iters = 124
+doing uhf
+iters = 125
+doing uhf
+iters = 126
+doing uhf
+iters = 127
+doing uhf
+iters = 128
+doing uhf
+iters = 129
+doing uhf
+iters = 130
+doing uhf
+iters = 131
+doing uhf
+iters = 132
+doing uhf
+iters = 133
+doing uhf
+iters = 134
+doing uhf
+iters = 135
+doing uhf
+iters = 136
+doing uhf
+iters = 137
+doing uhf
+iters = 138
+doing uhf
+iters = 139
+doing uhf
+iters = 140
+doing uhf
+iters = 141
+doing uhf
+iters = 142
+doing uhf
+iters = 143
+doing uhf
+iters = 144
+doing uhf
+iters = 145
+doing uhf
+iters = 146
+doing uhf
+iters = 147
+doing uhf
+iters = 148
+doing uhf
+iters = 149
+doing uhf
+iters = 150
+doing uhf
+iters = 151
+doing uhf
+iters = 152
+doing uhf
+iters = 153
+doing uhf
+iters = 154
+doing uhf
+iters = 155
+doing uhf
+iters = 156
+doing uhf
+iters = 157
+doing uhf
+iters = 158
+doing uhf
+iters = 159
+doing uhf
+iters = 160
+doing uhf
+iters = 161
+doing uhf
+iters = 162
+doing uhf
+iters = 163
+doing uhf
+iters = 164
+doing uhf
+iters = 165
+doing uhf
+iters = 166
+doing uhf
+iters = 167
+doing uhf
+iters = 168
+doing uhf
+iters = 169
+doing uhf
+iters = 170
+doing uhf
+iters = 171
+doing uhf
+iters = 172
+doing uhf
+iters = 173
+doing uhf
+iters = 174
+doing uhf
+iters = 175
+doing uhf
+iters = 176
+doing uhf
+iters = 177
+doing uhf
+iters = 178
+doing uhf
+iters = 179
+doing uhf
+iters = 180
+doing uhf
+iters = 181
+doing uhf
+iters = 182
+doing uhf
+iters = 183
+doing uhf
+iters = 184
+doing uhf
+iters = 185
+doing uhf
+iters = 186
+doing uhf
+iters = 187
+doing uhf
+iters = 188
+doing uhf
+iters = 189
+doing uhf
+iters = 190
+doing uhf
+iters = 191
+doing uhf
+iters = 192
+doing uhf
+iters = 193
+doing uhf
+iters = 194
+doing uhf
+iters = 195
+doing uhf
+iters = 196
+doing uhf
+iters = 197
+doing uhf
+iters = 198
+doing uhf
+iters = 199
+doing uhf
+iters = 200
+doing uhf
+iters = 201
+doing uhf
+iters = 202
+doing uhf
+iters = 203
+doing uhf
+iters = 204
+doing uhf
+iters = 205
+doing uhf
+iters = 206
+doing uhf
+iters = 207
+doing uhf
+iters = 208
+doing uhf
+iters = 209
+doing uhf
+iters = 210
+doing uhf
+iters = 211
+doing uhf
+iters = 212
+doing uhf
+iters = 213
+doing uhf
+iters = 214
+doing uhf
+iters = 215
+doing uhf
+iters = 216
+doing uhf
+iters = 217
+doing uhf
+iters = 218
+doing uhf
+iters = 219
+doing uhf
+iters = 220
+doing uhf
+iters = 221
+doing uhf
+iters = 222
+doing uhf
+iters = 223
+doing uhf
+iters = 224
+doing uhf
+iters = 225
+doing uhf
+iters = 226
+doing uhf
+iters = 227
+doing uhf
+iters = 228
+doing uhf
+iters = 229
+doing uhf
+iters = 230
+doing uhf
+iters = 231
+doing uhf
+iters = 232
+doing uhf
+iters = 233
+doing uhf
+iters = 234
+doing uhf
+iters = 235
+doing uhf
+iters = 236
+doing uhf
+iters = 237
+doing uhf
+iters = 238
+doing uhf
+iters = 239
+doing uhf
+iters = 240
+doing uhf
+iters = 241
+doing uhf
+iters = 242
+doing uhf
+iters = 243
+doing uhf
+iters = 244
+doing uhf
+iters = 245
+doing uhf
+iters = 246
+doing uhf
+iters = 247
+doing uhf
+iters = 248
+doing uhf
+iters = 249
+doing uhf
+iters = 250
+doing uhf
+iters = 251
+doing uhf
+iters = 252
+doing uhf
+iters = 253
+doing uhf
+iters = 254
+doing uhf
+iters = 255
+doing uhf
+iters = 256
+doing uhf
+iters = 257
+doing uhf
+iters = 258
+doing uhf
+iters = 259
+doing uhf
+iters = 260
+doing uhf
+iters = 261
+doing uhf
+iters = 262
+doing uhf
+iters = 263
+doing uhf
+iters = 264
+doing uhf
+iters = 265
+doing uhf
+iters = 266
+doing uhf
+iters = 267
+doing uhf
+iters = 268
+doing uhf
+iters = 269
+doing uhf
+iters = 270
+doing uhf
+iters = 271
+doing uhf
+iters = 272
+doing uhf
+iters = 273
+doing uhf
+iters = 274
+doing uhf
+iters = 275
+doing uhf
+iters = 276
+doing uhf
+iters = 277
+doing uhf
+iters = 278
+doing uhf
+iters = 279
+doing uhf
+iters = 280
+doing uhf
+iters = 281
+doing uhf
+iters = 282
+doing uhf
+iters = 283
+doing uhf
+iters = 284
+doing uhf
+iters = 285
+doing uhf
+iters = 286
+doing uhf
+iters = 287
+doing uhf
+iters = 288
+doing uhf
+iters = 289
+doing uhf
+iters = 290
+doing uhf
+iters = 291
+doing uhf
+iters = 292
+doing uhf
+iters = 293
+doing uhf
+iters = 294
+doing uhf
+iters = 295
+doing uhf
+iters = 296
+doing uhf
+iters = 297
+doing uhf
+iters = 298
+doing uhf
+iters = 299
+doing uhf
+iters = 300
+doing uhf
+iters = 301
+doing uhf
+iters = 302
+doing uhf
+iters = 303
+doing uhf
+iters = 304
+doing uhf
+iters = 305
+doing uhf
+iters = 306
+doing uhf
+iters = 307
+doing uhf
+iters = 308
+doing uhf
+iters = 309
+doing uhf
+iters = 310
+doing uhf
+iters = 311
+doing uhf
+iters = 312
+doing uhf
+iters = 313
+doing uhf
+iters = 314
+doing uhf
+iters = 315
+doing uhf
+iters = 316
+doing uhf
+iters = 317
+doing uhf
+iters = 318
+doing uhf
+iters = 319
+doing uhf
+iters = 320
+doing uhf
+iters = 321
+doing uhf
+iters = 322
+doing uhf
+iters = 323
+doing uhf
+iters = 324
+doing uhf
+iters = 325
+doing uhf
+iters = 326
+doing uhf
+iters = 327
+doing uhf
+iters = 328
+doing uhf
+iters = 329
+doing uhf
+iters = 330
+doing uhf
+iters = 331
+doing uhf
+iters = 332
+doing uhf
+iters = 333
+doing uhf
+iters = 334
+doing uhf
+iters = 335
+doing uhf
+iters = 336
+doing uhf
+iters = 337
+doing uhf
+iters = 338
+doing uhf
+iters = 339
+doing uhf
+iters = 340
+doing uhf
+iters = 341
+doing uhf
+iters = 342
+doing uhf
+iters = 343
+doing uhf
+iters = 344
+doing uhf
+iters = 345
+doing uhf
+iters = 346
+doing uhf
+iters = 347
+doing uhf
+iters = 348
+doing uhf
+iters = 349
+doing uhf
+iters = 350
+doing uhf
+iters = 351
+doing uhf
+iters = 352
+doing uhf
+iters = 353
+doing uhf
+iters = 354
+doing uhf
+iters = 355
+doing uhf
+iters = 356
+doing uhf
+iters = 357
+doing uhf
+iters = 358
+doing uhf
+iters = 359
+doing uhf
+iters = 360
+doing uhf
+iters = 361
+doing uhf
+iters = 362
+doing uhf
+iters = 363
+doing uhf
+iters = 364
+doing uhf
+iters = 365
+doing uhf
+iters = 366
+doing uhf
+iters = 367
+doing uhf
+iters = 368
+doing uhf
+iters = 369
+doing uhf
+iters = 370
+doing uhf
+iters = 371
+doing uhf
+iters = 372
+doing uhf
+iters = 373
+doing uhf
+iters = 374
+doing uhf
+iters = 375
+doing uhf
+iters = 376
+doing uhf
+iters = 377
+doing uhf
+iters = 378
+doing uhf
+iters = 379
+doing uhf
+iters = 380
+doing uhf
+iters = 381
+doing uhf
+iters = 382
+doing uhf
+iters = 383
+doing uhf
+iters = 384
+doing uhf
+iters = 385
+doing uhf
+iters = 386
+doing uhf
+iters = 387
+doing uhf
+iters = 388
+doing uhf
+iters = 389
+doing uhf
+iters = 390
+doing uhf
+iters = 391
+doing uhf
+iters = 392
+doing uhf
+iters = 393
+doing uhf
+iters = 394
+doing uhf
+iters = 395
+doing uhf
+iters = 396
+doing uhf
+iters = 397
+doing uhf
+iters = 398
+doing uhf
+iters = 399
+doing uhf
+iters = 400
+doing uhf
+iters = 401
+doing uhf
+iters = 402
+doing uhf
+iters = 403
+doing uhf
+iters = 404
+doing uhf
+iters = 405
+doing uhf
+iters = 406
+doing uhf
+iters = 407
+doing uhf
+iters = 408
+doing uhf
+iters = 409
+doing uhf
+iters = 410
+doing uhf
+iters = 411
+doing uhf
+iters = 412
+doing uhf
+iters = 413
+doing uhf
+iters = 414
+doing uhf
+iters = 415
+doing uhf
+iters = 416
+doing uhf
+iters = 417
+doing uhf
+iters = 418
+doing uhf
+iters = 419
+doing uhf
+iters = 420
+doing uhf
+iters = 421
+doing uhf
+iters = 422
+doing uhf
+iters = 423
+doing uhf
+iters = 424
+doing uhf
+iters = 425
+doing uhf
+iters = 426
+doing uhf
+iters = 427
+doing uhf
+iters = 428
+doing uhf
+iters = 429
+doing uhf
+iters = 430
+doing uhf
+iters = 431
+doing uhf
+iters = 432
+doing uhf
+iters = 433
+doing uhf
+iters = 434
+doing uhf
+iters = 435
+doing uhf
+iters = 436
+doing uhf
+iters = 437
+doing uhf
+iters = 438
+doing uhf
+iters = 439
+doing uhf
+iters = 440
+doing uhf
+iters = 441
+doing uhf
+iters = 442
+doing uhf
+iters = 443
+doing uhf
+iters = 444
+doing uhf
+iters = 445
+doing uhf
+iters = 446
+doing uhf
+iters = 447
+doing uhf
+iters = 448
+doing uhf
+iters = 449
+doing uhf
+iters = 450
+doing uhf
+iters = 451
+doing uhf
+iters = 452
+doing uhf
+iters = 453
+doing uhf
+iters = 454
+doing uhf
+iters = 455
+doing uhf
+iters = 456
+doing uhf
+iters = 457
+doing uhf
+iters = 458
+doing uhf
+iters = 459
+doing uhf
+iters = 460
+doing uhf
+iters = 461
+doing uhf
+iters = 462
+doing uhf
+iters = 463
+doing uhf
+iters = 464
+doing uhf
+iters = 465
+doing uhf
+iters = 466
+doing uhf
+iters = 467
+doing uhf
+iters = 468
+doing uhf
+iters = 469
+doing uhf
+iters = 470
+doing uhf
+iters = 471
+doing uhf
+iters = 472
+doing uhf
+iters = 473
+doing uhf
+iters = 474
+doing uhf
+iters = 475
+doing uhf
+iters = 476
+doing uhf
+iters = 477
+doing uhf
+iters = 478
+doing uhf
+iters = 479
+doing uhf
+iters = 480
+doing uhf
+iters = 481
+doing uhf
+iters = 482
+doing uhf
+iters = 483
+doing uhf
+iters = 484
+doing uhf
+iters = 485
+doing uhf
+iters = 486
+doing uhf
+iters = 487
+doing uhf
+iters = 488
+doing uhf
+iters = 489
+doing uhf
+iters = 490
+doing uhf
+iters = 491
+doing uhf
+iters = 492
+doing uhf
+iters = 493
+doing uhf
+iters = 494
+doing uhf
+iters = 495
+doing uhf
+iters = 496
+doing uhf
+iters = 497
+doing uhf
+iters = 498
+doing uhf
+iters = 499
+doing uhf
+iters = 500
+doing uhf
+iters = 501
+doing uhf
+iters = 502
+doing uhf
+iters = 503
+doing uhf
+iters = 504
+doing uhf
+iters = 505
+doing uhf
+iters = 506
+doing uhf
+iters = 507
+doing uhf
+iters = 508
+doing uhf
+iters = 509
+doing uhf
+iters = 510
+doing uhf
+iters = 511
+doing uhf
+iters = 512
+doing uhf
+iters = 513
+doing uhf
+iters = 514
+doing uhf
+iters = 515
+doing uhf
+iters = 516
+doing uhf
+iters = 517
+doing uhf
+iters = 518
+doing uhf
+iters = 519
+doing uhf
+iters = 520
+doing uhf
+iters = 521
+doing uhf
+iters = 522
+doing uhf
+iters = 523
+doing uhf
+iters = 524
+doing uhf
+iters = 525
+doing uhf
+iters = 526
+doing uhf
+iters = 527
+doing uhf
+iters = 528
+doing uhf
+iters = 529
+doing uhf
+iters = 530
+doing uhf
+iters = 531
+doing uhf
+iters = 532
+doing uhf
+iters = 533
+doing uhf
+iters = 534
+doing uhf
+iters = 535
+doing uhf
+iters = 536
+doing uhf
+iters = 537
+doing uhf
+iters = 538
+doing uhf
+iters = 539
+doing uhf
+iters = 540
+doing uhf
+iters = 541
+doing uhf
+iters = 542
+doing uhf
+iters = 543
+doing uhf
+iters = 544
+doing uhf
+iters = 545
+doing uhf
+iters = 546
+doing uhf
+iters = 547
+doing uhf
+iters = 548
+doing uhf
+iters = 549
+doing uhf
+iters = 550
+doing uhf
+iters = 551
+doing uhf
+iters = 552
+doing uhf
+iters = 553
+doing uhf
+iters = 554
+doing uhf
+iters = 555
+doing uhf
+iters = 556
+doing uhf
+iters = 557
+doing uhf
+iters = 558
+doing uhf
+iters = 559
+doing uhf
+iters = 560
+doing uhf
+iters = 561
+doing uhf
+iters = 562
+doing uhf
+iters = 563
+doing uhf
+iters = 564
+doing uhf
+iters = 565
+doing uhf
+iters = 566
+doing uhf
+iters = 567
+doing uhf
+iters = 568
+doing uhf
+iters = 569
+doing uhf
+iters = 570
+doing uhf
+iters = 571
+doing uhf
+iters = 572
+doing uhf
+iters = 573
+doing uhf
+iters = 574
+doing uhf
+iters = 575
+doing uhf
+iters = 576
+doing uhf
+iters = 577
+doing uhf
+iters = 578
+doing uhf
+iters = 579
+doing uhf
+iters = 580
+doing uhf
+iters = 581
+doing uhf
+iters = 582
+doing uhf
+iters = 583
+doing uhf
+iters = 584
+doing uhf
+iters = 585
+doing uhf
+iters = 586
+doing uhf
+iters = 587
+doing uhf
+iters = 588
+doing uhf
+iters = 589
+doing uhf
+iters = 590
+doing uhf
+iters = 591
+doing uhf
+iters = 592
+doing uhf
+iters = 593
+doing uhf
+iters = 594
+doing uhf
+iters = 595
+doing uhf
+iters = 596
+doing uhf
+iters = 597
+doing uhf
+iters = 598
+doing uhf
+iters = 599
+doing uhf
+iters = 600
+doing uhf
+iters = 601
+doing uhf
+iters = 602
+doing uhf
+iters = 603
+doing uhf
+iters = 604
+doing uhf
+iters = 605
+doing uhf
+iters = 606
+doing uhf
+iters = 607
+doing uhf
+iters = 608
+doing uhf
+iters = 609
+doing uhf
+iters = 610
+doing uhf
+iters = 611
+doing uhf
+iters = 612
+doing uhf
+iters = 613
+doing uhf
+iters = 614
+doing uhf
+iters = 615
+doing uhf
+iters = 616
+doing uhf
+iters = 617
+doing uhf
+iters = 618
+doing uhf
+iters = 619
+doing uhf
+iters = 620
+doing uhf
+iters = 621
+doing uhf
+iters = 622
+doing uhf
+iters = 623
+doing uhf
+iters = 624
+doing uhf
+iters = 625
+doing uhf
+iters = 626
+doing uhf
+iters = 627
+doing uhf
+iters = 628
+doing uhf
+iters = 629
+doing uhf
+iters = 630
+doing uhf
+iters = 631
+doing uhf
+iters = 632
+doing uhf
+iters = 633
+doing uhf
+iters = 634
+doing uhf
+iters = 635
+doing uhf
+iters = 636
+doing uhf
+iters = 637
+doing uhf
+iters = 638
+doing uhf
+iters = 639
+doing uhf
+iters = 640
+doing uhf
+iters = 641
+doing uhf
+iters = 642
+doing uhf
+iters = 643
+doing uhf
+iters = 644
+doing uhf
+iters = 645
+doing uhf
+iters = 646
+doing uhf
+iters = 647
+doing uhf
+iters = 648
+doing uhf
+iters = 649
+doing uhf
+iters = 650
+doing uhf
+iters = 651
+doing uhf
+iters = 652
+doing uhf
+iters = 653
+doing uhf
+iters = 654
+doing uhf
+iters = 655
+doing uhf
+iters = 656
+doing uhf
+iters = 657
+doing uhf
+iters = 658
+doing uhf
+iters = 659
+doing uhf
+iters = 660
+doing uhf
+iters = 661
+doing uhf
+iters = 662
+doing uhf
+iters = 663
+doing uhf
+iters = 664
+doing uhf
+iters = 665
+doing uhf
+iters = 666
+doing uhf
+iters = 667
+doing uhf
+iters = 668
+doing uhf
+iters = 669
+doing uhf
+iters = 670
+doing uhf
+iters = 671
+doing uhf
+iters = 672
+doing uhf
+iters = 673
+doing uhf
+iters = 674
+doing uhf
+iters = 675
+doing uhf
+iters = 676
+doing uhf
+iters = 677
+doing uhf
+iters = 678
+doing uhf
+iters = 679
+doing uhf
+iters = 680
+doing uhf
+iters = 681
+doing uhf
+iters = 682
+doing uhf
+iters = 683
+doing uhf
+iters = 684
+doing uhf
+iters = 685
+doing uhf
+iters = 686
+doing uhf
+iters = 687
+doing uhf
+iters = 688
+doing uhf
+iters = 689
+doing uhf
+iters = 690
+doing uhf
+iters = 691
+doing uhf
+iters = 692
+doing uhf
+iters = 693
+doing uhf
+iters = 694
+doing uhf
+iters = 695
+doing uhf
+iters = 696
+doing uhf
+iters = 697
+doing uhf
+iters = 698
+doing uhf
+iters = 699
+doing uhf
+iters = 700
+doing uhf
+iters = 701
+doing uhf
+iters = 702
+doing uhf
+iters = 703
+doing uhf
+iters = 704
+doing uhf
+iters = 705
+doing uhf
+iters = 706
+doing uhf
+iters = 707
+doing uhf
+iters = 708
+doing uhf
+iters = 709
+doing uhf
+iters = 710
+doing uhf
+iters = 711
+doing uhf
+iters = 712
+doing uhf
+iters = 713
+doing uhf
+iters = 714
+doing uhf
+iters = 715
+doing uhf
+iters = 716
+doing uhf
+iters = 717
+doing uhf
+iters = 718
+doing uhf
+iters = 719
+doing uhf
+iters = 720
+doing uhf
+iters = 721
+doing uhf
+iters = 722
+doing uhf
+iters = 723
+doing uhf
+iters = 724
+doing uhf
+iters = 725
+doing uhf
+iters = 726
+doing uhf
+iters = 727
+doing uhf
+iters = 728
+doing uhf
+iters = 729
+doing uhf
+iters = 730
+doing uhf
+iters = 731
+doing uhf
+iters = 732
+doing uhf
+iters = 733
+doing uhf
+iters = 734
+doing uhf
+iters = 735
+doing uhf
+iters = 736
+doing uhf
+iters = 737
+doing uhf
+iters = 738
+doing uhf
+iters = 739
+doing uhf
+iters = 740
+doing uhf
+iters = 741
+doing uhf
+iters = 742
+doing uhf
+iters = 743
+doing uhf
+iters = 744
+doing uhf
+iters = 745
+doing uhf
+iters = 746
+doing uhf
+iters = 747
+doing uhf
+iters = 748
+doing uhf
+iters = 749
+doing uhf
+iters = 750
+doing uhf
+iters = 751
+doing uhf
+iters = 752
+doing uhf
+iters = 753
+doing uhf
+iters = 754
+doing uhf
+iters = 755
+doing uhf
+iters = 756
+doing uhf
+iters = 757
+doing uhf
+iters = 758
+doing uhf
+iters = 759
+doing uhf
+iters = 760
+doing uhf
+iters = 761
+doing uhf
+iters = 762
+doing uhf
+iters = 763
+doing uhf
+iters = 764
+doing uhf
+iters = 765
+doing uhf
+iters = 766
+doing uhf
+iters = 767
+doing uhf
+iters = 768
+doing uhf
+iters = 769
+doing uhf
+iters = 770
+doing uhf
+iters = 771
+doing uhf
+iters = 772
+doing uhf
+iters = 773
+doing uhf
+iters = 774
+doing uhf
+iters = 775
+doing uhf
+iters = 776
+doing uhf
+iters = 777
+doing uhf
+iters = 778
+doing uhf
+iters = 779
+doing uhf
+iters = 780
+doing uhf
+iters = 781
+doing uhf
+iters = 782
+doing uhf
+iters = 783
+doing uhf
+iters = 784
+doing uhf
+iters = 785
+doing uhf
+iters = 786
+doing uhf
+iters = 787
+doing uhf
+iters = 788
+doing uhf
+iters = 789
+doing uhf
+iters = 790
+doing uhf
+iters = 791
+doing uhf
+iters = 792
+doing uhf
+iters = 793
+doing uhf
+iters = 794
+doing uhf
+iters = 795
+doing uhf
+iters = 796
+doing uhf
+iters = 797
+doing uhf
+iters = 798
+doing uhf
+iters = 799
+doing uhf
+iters = 800
+doing uhf
+iters = 801
+doing uhf
+iters = 802
+doing uhf
+iters = 803
+doing uhf
+iters = 804
+doing uhf
+iters = 805
+doing uhf
+iters = 806
+doing uhf
+iters = 807
+doing uhf
+iters = 808
+doing uhf
+iters = 809
+doing uhf
+iters = 810
+doing uhf
+iters = 811
+doing uhf
+iters = 812
+doing uhf
+iters = 813
+doing uhf
+iters = 814
+doing uhf
+iters = 815
+doing uhf
+iters = 816
+doing uhf
+iters = 817
+doing uhf
+iters = 818
+doing uhf
+iters = 819
+doing uhf
+iters = 820
+doing uhf
+iters = 821
+doing uhf
+iters = 822
+doing uhf
+iters = 823
+doing uhf
+iters = 824
+doing uhf
+iters = 825
+doing uhf
+iters = 826
+doing uhf
+iters = 827
+doing uhf
+iters = 828
+doing uhf
+iters = 829
+doing uhf
+iters = 830
+doing uhf
+iters = 831
+doing uhf
+iters = 832
+doing uhf
+iters = 833
+doing uhf
+iters = 834
+doing uhf
+iters = 835
+doing uhf
+iters = 836
+doing uhf
+iters = 837
+doing uhf
+iters = 838
+doing uhf
+iters = 839
+doing uhf
+iters = 840
+doing uhf
+iters = 841
+doing uhf
+iters = 842
+doing uhf
+iters = 843
+doing uhf
+iters = 844
+doing uhf
+iters = 845
+doing uhf
+iters = 846
+doing uhf
+iters = 847
+doing uhf
+iters = 848
+doing uhf
+iters = 849
+doing uhf
+iters = 850
+doing uhf
+iters = 851
+doing uhf
+iters = 852
+doing uhf
+iters = 853
+doing uhf
+iters = 854
+doing uhf
+iters = 855
+doing uhf
+iters = 856
+doing uhf
+iters = 857
+doing uhf
+iters = 858
+doing uhf
+iters = 859
+doing uhf
+iters = 860
+doing uhf
+iters = 861
+doing uhf
+iters = 862
+doing uhf
+iters = 863
+doing uhf
+iters = 864
+doing uhf
+iters = 865
+doing uhf
+iters = 866
+doing uhf
+iters = 867
+doing uhf
+iters = 868
+doing uhf
+iters = 869
+doing uhf
+iters = 870
+doing uhf
+iters = 871
+doing uhf
+iters = 872
+doing uhf
+iters = 873
+doing uhf
+iters = 874
+doing uhf
+iters = 875
+doing uhf
+iters = 876
+doing uhf
+iters = 877
+doing uhf
+iters = 878
+doing uhf
+iters = 879
+doing uhf
+iters = 880
+doing uhf
+iters = 881
+doing uhf
+iters = 882
+doing uhf
+iters = 883
+doing uhf
+iters = 884
+doing uhf
+iters = 885
+doing uhf
+iters = 886
+doing uhf
+iters = 887
+doing uhf
+iters = 888
+doing uhf
+iters = 889
+doing uhf
+iters = 890
+doing uhf
+iters = 891
+doing uhf
+iters = 892
+doing uhf
+iters = 893
+doing uhf
+iters = 894
+doing uhf
+iters = 895
+doing uhf
+iters = 896
+doing uhf
+iters = 897
+doing uhf
+iters = 898
+doing uhf
+iters = 899
+doing uhf
+iters = 900
+doing uhf
+iters = 901
+doing uhf
+iters = 902
+doing uhf
+iters = 903
+doing uhf
+iters = 904
+doing uhf
+iters = 905
+doing uhf
+iters = 906
+doing uhf
+iters = 907
+doing uhf
+iters = 908
+doing uhf
+iters = 909
+doing uhf
+iters = 910
+doing uhf
+iters = 911
+doing uhf
+iters = 912
+doing uhf
+iters = 913
+doing uhf
+iters = 914
+doing uhf
+iters = 915
+doing uhf
+iters = 916
+doing uhf
+iters = 917
+doing uhf
+iters = 918
+doing uhf
+iters = 919
+doing uhf
+iters = 920
+doing uhf
+iters = 921
+doing uhf
+iters = 922
+doing uhf
+iters = 923
+doing uhf
+iters = 924
+doing uhf
+iters = 925
+doing uhf
+iters = 926
+doing uhf
+iters = 927
+doing uhf
+iters = 928
+doing uhf
+iters = 929
+doing uhf
+iters = 930
+doing uhf
+iters = 931
+doing uhf
+iters = 932
+doing uhf
+iters = 933
+doing uhf
+iters = 934
+doing uhf
+iters = 935
+doing uhf
+iters = 936
+doing uhf
+iters = 937
+doing uhf
+iters = 938
+doing uhf
+iters = 939
+doing uhf
+iters = 940
+doing uhf
+iters = 941
+doing uhf
+iters = 942
+doing uhf
+iters = 943
+doing uhf
+iters = 944
+doing uhf
+iters = 945
+doing uhf
+iters = 946
+doing uhf
+iters = 947
+doing uhf
+iters = 948
+doing uhf
+iters = 949
+doing uhf
+iters = 950
+doing uhf
+iters = 951
+doing uhf
+iters = 952
+doing uhf
+iters = 953
+doing uhf
+iters = 954
+doing uhf
+iters = 955
+doing uhf
+iters = 956
+doing uhf
+iters = 957
+doing uhf
+iters = 958
+doing uhf
+iters = 959
+doing uhf
+iters = 960
+doing uhf
+iters = 961
+doing uhf
+iters = 962
+doing uhf
+iters = 963
+doing uhf
+iters = 964
+doing uhf
+iters = 965
+doing uhf
+iters = 966
+doing uhf
+iters = 967
+doing uhf
+iters = 968
+doing uhf
+iters = 969
+doing uhf
+iters = 970
+doing uhf
+iters = 971
+doing uhf
+iters = 972
+doing uhf
+iters = 973
+doing uhf
+iters = 974
+doing uhf
+iters = 975
+doing uhf
+iters = 976
+doing uhf
+iters = 977
+doing uhf
+iters = 978
+doing uhf
+iters = 979
+doing uhf
+iters = 980
+doing uhf
+iters = 981
+doing uhf
+iters = 982
+doing uhf
+iters = 983
+doing uhf
+iters = 984
+doing uhf
+iters = 985
+doing uhf
+iters = 986
+doing uhf
+iters = 987
+doing uhf
+iters = 988
+doing uhf
+iters = 989
+doing uhf
+iters = 990
+doing uhf
+iters = 991
+doing uhf
+iters = 992
+doing uhf
+iters = 993
+doing uhf
+iters = 994
+doing uhf
+iters = 995
+doing uhf
+iters = 996
+doing uhf
+iters = 997
+doing uhf
+iters = 998
+doing uhf
+iters = 999
+doing uhf
+iters = 1000
+doing uhf
