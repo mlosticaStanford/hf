@@ -137,7 +137,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
   double *Ca, *Cb, *eigsA, *eigsB, *Fa, *Fb, *Fpa, *Fpb;
 
   // diis stuff
-  int dIndex;
+  double errNorm = 1.0;
   double *err, *coeffs;
   double *bCopy;
 
@@ -286,6 +286,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
   //////////////////////////////
   
   while (notConverged) {
+    printf("iters = %i\n", iters);
 
     // rhf
     if (ur == 0) {
@@ -305,8 +306,9 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
             fockArr, errVecs,
             B, coeffs, 
             F, err,
-            P, S,
-            workA, workB, bCopy);
+            P, S, X,
+            workA, workB, bCopy,
+            errNorm);
       } 
 
       // compute Fp
@@ -340,6 +342,8 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     // uhf
     else {
 
+      printf("doing uhf\n");
+
     
       // compute G's
       makeUrG(blen, Pa, Pb, Pt, eri, Ga, Gb);
@@ -358,16 +362,18 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
           fockArrA, errVecsA,
           Ba, coeffs, 
           Fa, err,
-          Pa, S,
-          workA, workB, bCopy);
+          Pa, S, X,
+          workA, workB, bCopy,
+          errNorm);
 
         // diis for Fock B
         runDIIS(blen, diisNum, iters,
           fockArrB, errVecsB,
           Bb, coeffs, 
           Fb, err,
-          Pb, S,
-          workA, workB, bCopy);
+          Pb, S, X,
+          workA, workB, bCopy, 
+          errNorm);
      } 
 
       // compute Fp's
@@ -420,6 +426,10 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     notConverged = (dE > eTol) && (iters < maxIters);
     iters++;
     oldE = newE;
+    // if diis, use errVec for convergence
+    //if (diisNum > 0) {
+    //  notConverged = (errNorm > eTol) && (iters < maxIters);
+    //}
   }
 
   // calculate total energy

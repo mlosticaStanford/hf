@@ -236,9 +236,9 @@ void readParams(char *fName, calcParams *params) {
   // read uhf boolean
   fscanf(fp, "%1023s", buff);
   fscanf(fp, "%1023s", buff);
-  fscanf(fp, "%1023s", buff);
   fscanf(fp, "%i", &i);
   params->uhf = i;
+  printf("params->uhf = %i\n", params->uhf);
 
   // read tolerance
   fscanf(fp, "%1023s", buff);
@@ -246,18 +246,21 @@ void readParams(char *fName, calcParams *params) {
   fscanf(fp, "%1023s", buff);
   strcpy(val,buff);
   params->tol = strtod(val, &b);
+  printf("params->tol= %.9f\n", params->tol);
 
   // alpha elecs
   fscanf(fp, "%1023s", buff);
   fscanf(fp, "%1023s", buff);
   fscanf(fp, "%i", &i);
   params->aElecs = i;
+  printf("params->aElecs= %i\n", params->aElecs);
 
   // beta elecs
   fscanf(fp, "%1023s", buff);
   fscanf(fp, "%1023s", buff);
   fscanf(fp, "%i", &i);
   params->bElecs = i;
+  printf("params->bElecs= %i\n", params->bElecs);
 
   // max iters
   fscanf(fp, "%1023s", buff);

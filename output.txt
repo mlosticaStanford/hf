@@ -1,4 +1,4 @@
 Running SCF calculation
 Convergence criteria satisfied! 
-The ground state electronic energy = -1.177308 
-Total ground state energy = -0.864808
+The ground state electronic energy = 0.000000 
+Total ground state energy = 0.312500
