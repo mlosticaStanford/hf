@@ -268,9 +268,17 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
   copyMat(blen, blen, S, U);
   diagMat(blen, blen, U, sp);
 
+  printf("S mat = \n");
+  printMat(blen, blen, false, S);
+
   // make X, Xt
   makeX(blen, S, U, sp, X, Xt); 
   transpose(blen, blen, false, false, X, Xt);
+
+  printf("X mat = \n");
+  printMat(blen, blen, false, X);
+  printf("Xt mat = \n");
+  printMat(blen, blen, false, Xt);
 
 
   //////////////////////////////
@@ -306,7 +314,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
             fockArr, errVecs,
             B, coeffs, 
             F, err,
-            P, S, X,
+            P, S, Xt, X,
             workA, workB, bCopy,
             errNorm);
       } 
@@ -362,7 +370,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
           fockArrA, errVecsA,
           Ba, coeffs, 
           Fa, err,
-          Pa, S, X,
+          Pa, S, Xt, X,
           workA, workB, bCopy,
           errNorm);
 
@@ -371,7 +379,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
           fockArrB, errVecsB,
           Bb, coeffs, 
           Fb, err,
-          Pb, S, X,
+          Pb, S, Xt, X,
           workA, workB, bCopy, 
           errNorm);
      } 
@@ -427,10 +435,15 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     iters++;
     oldE = newE;
     // if diis, use errVec for convergence
-    //if (diisNum > 0) {
-    //  notConverged = (errNorm > eTol) && (iters < maxIters);
-    //}
+    if (diisNum > 0) {
+      notConverged = (errNorm > eTol) && (iters < maxIters);
+    }
   }
+
+  printf("Final P = \n");
+  printMat(blen, blen, false, P);
+  printf("Final F = \n");
+  printMat(blen, blen, false, F);
 
   // calculate total energy
   double totalE = newE + nucE;

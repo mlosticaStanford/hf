@@ -20,7 +20,7 @@
 ///////////////////////////////
 
 void errVec(int blen, double e[], double F[], double P[], 
-  double S[], double X[], double workA[], double workB[]);
+  double S[], double Xt[], double X[], double workA[], double workB[]);
 
 //*****************************************************************//
 
@@ -103,7 +103,7 @@ void runDIIS(int blen, int diisNum, int iter,
   double *fockArr[], double *errVecs[],
   double B[], double coeffs[], 
   double F[], double upErr[], 
-  double P[], double S[], double X[],
+  double P[], double S[], double Xt[], double X[],
   double workA[], double workB[], double bCopy[], double errNorm);
 
 //*****************************************************************//

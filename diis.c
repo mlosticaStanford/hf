@@ -21,12 +21,12 @@
 ///////////////////////////////
 
 void errVec(int blen, double e[], double F[], double P[], 
-  double S[], double X[], double workA[], double workB[]) {
+  double S[], double Xt[], double X[], double workA[], double workB[]) {
 
-  // compute XtFPS, store it in workB
-	cblas_dgemm(CblasColMajor, CblasTrans, CblasNoTrans,
+  // compute XtFPS, store it in workA
+	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
-                                        1.0, X, blen, F, blen,
+                                        1.0, Xt, blen, F, blen,
                                         0.0, workA, blen);
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
@@ -37,7 +37,7 @@ void errVec(int blen, double e[], double F[], double P[],
                                         1.0, workB, blen, S, blen,
                                         0.0, workA, blen);
 
-  // compute SPFX, store it in e
+  // compute SPFX, store it in workB
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
                                         1.0, S, blen, P, blen,
@@ -211,26 +211,26 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
 
   // maxErr to get index of worst error
   // epsilon for regularization
-  double maxErr, eps = 0.01;
+  double maxErr, eps = 0.001;
 
   // only update using the new vector
   bIndex = iter % numPrev;
 
   // update using the worst error 
-  //if (iter >= numPrev) {
-  //  maxErr = B[0];
-  //  bIndex = 0;
-  //  for (i = 1; i < numPrev; i++) {
-  //    k = i + (i*(numPrev +1 ));
-  //    if (B[k] > maxErr) {
-  //      maxErr = B[k];
-  //      bIndex = i;
-  //    }
-  //  }
-  //}
-  //else {
-  //  bIndex = iter;
-  //}
+  if (iter >= numPrev * 2) {
+    maxErr = B[0];
+    bIndex = 0;
+    for (i = 1; i < numPrev; i++) {
+      k = i + (i*(numPrev +1 ));
+      if (B[k] > maxErr) {
+        maxErr = B[k];
+        bIndex = i;
+      }
+    }
+  }
+  else {
+    bIndex = iter % numPrev;
+  }
 
   printf("bIndex for upB = %i\n", bIndex);
   
@@ -320,7 +320,7 @@ void runDIIS(int blen, int diisNum, int iter,
   double *fockArr[], double *errVecs[],
   double B[], double coeffs[], 
   double F[], double upErr[], 
-  double P[], double S[], double X[],
+  double P[], double S[], double Xt[], double X[],
   double workA[], double workB[], double bCopy[], double errNorm) {
   // blen, length of basis
   // diisNum, number of previous Fock matrices to use
@@ -343,27 +343,27 @@ void runDIIS(int blen, int diisNum, int iter,
 
   bIndex = iter % diisNum;
 
-  //// update using the worst error 
-  //if (iter >= diisNum) {
-  //  maxErr = B[0];
-  //  bIndex = 0;
-  //  for (i = 0; i < diisNum; i++) {
-  //    k = i + (i*(diisNum +1 ));
-  //    if (B[k] > maxErr) {
-  //      maxErr = B[k];
-  //      bIndex = i;
-  //    }
-  //  }
-  //}
-  //else {
-  //  bIndex = iter;
-  //}
+  // update using the worst error 
+  if (iter >= diisNum * 2) {
+    maxErr = B[0];
+    bIndex = 0;
+    for (i = 0; i < diisNum; i++) {
+      k = i + (i*(diisNum +1 ));
+      if (B[k] > maxErr) {
+        maxErr = B[k];
+        bIndex = i;
+      }
+    }
+  }
+  else {
+    bIndex = iter % diisNum;
+  }
 
   // update fock vectors
   copyMat(blen, blen, F, fockArr[bIndex]);
 
   // compute new error vector
-  errVec(blen, upErr, F, P, S, X, workA, workB);
+  errVec(blen, upErr, F, P, S, Xt, X, workA, workB);
   copyMat(blen, blen, upErr, errVecs[bIndex]);
 
   // update B matrix
@@ -399,8 +399,6 @@ void runDIIS(int blen, int diisNum, int iter,
       coeffs[i] = 0.0;
     }
     coeffs[diisNum] = 1.0;
-    printf("coeffs before solving are \n");
-    printMat(diisNum + 1, 1, false,coeffs);
 
     // solve B matrix
     info = LAPACKE_dgesv( LAPACK_COL_MAJOR, diisNum + 1, 1, B, 
