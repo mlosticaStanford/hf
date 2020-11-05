@@ -14,4 +14,4 @@ tol = 0.000000001
 alphaElecs = 1
 betaElecs = 1
 maxIters = 1000
-diisNum = 7
+diisNum = 0
