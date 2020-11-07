@@ -66,6 +66,33 @@ void errVec(int blen, double e[], double F[], double P[],
 
 
 //*****************************************************************//
+// is max value in err vec below threshold?
+///////////////////////////////
+
+int errTol(int blen, double e[], double tol) {
+  
+  double maxVal = fabs(e[0]);
+  int i;
+
+  for (i = 0; i < blen*blen; i++) {
+    if (fabs(e[i]) > maxVal) {
+      maxVal = fabs(e[i]);
+    }
+  }
+
+  if (maxVal < tol) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+} 
+
+//*****************************************************************//
+
+
+
+//*****************************************************************//
 // initialize bmatrix
 ///////////////////////////////
 
@@ -217,20 +244,20 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
   bIndex = iter % numPrev;
 
   // update using the worst error 
-  //if (iter >= numPrev) {
-  //  maxErr = B[0];
-  //  bIndex = 0;
-  //  for (i = 1; i < numPrev; i++) {
-  //    k = i + (i*(numPrev +1 ));
-  //    if (B[k] > maxErr) {
-  //      maxErr = B[k];
-  //      bIndex = i;
-  //    }
-  //  }
-  //}
-  //else {
-  //  bIndex = iter;
-  //}
+  if (iter >= numPrev * 2) {
+    maxErr = B[0];
+    bIndex = 0;
+    for (i = 1; i < numPrev; i++) {
+      k = i + (i*(numPrev +1 ));
+      if (B[k] > maxErr) {
+        maxErr = B[k];
+        bIndex = i;
+      }
+    }
+  }
+  else {
+    bIndex = iter % numPrev;
+  }
 
   printf("bIndex for upB = %i\n", bIndex);
   
@@ -245,7 +272,7 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
       // work in the area of matrix that's not
       // the bottom row
       // or the rightmost column
-      if (i < numPrev && j < numPrev && i == bIndex) {
+      if (i < numPrev && j < numPrev && (i == bIndex || j == bIndex)) {
         B[k] = bElt(errVecs[i], errVecs[j], blen, work);
 
         
@@ -344,20 +371,20 @@ void runDIIS(int blen, int diisNum, int iter,
   bIndex = iter % diisNum;
 
   //// update using the worst error 
-  //if (iter >= diisNum) {
-  //  maxErr = B[0];
-  //  bIndex = 0;
-  //  for (i = 0; i < diisNum; i++) {
-  //    k = i + (i*(diisNum +1 ));
-  //    if (B[k] > maxErr) {
-  //      maxErr = B[k];
-  //      bIndex = i;
-  //    }
-  //  }
-  //}
-  //else {
-  //  bIndex = iter;
-  //}
+  if (iter >= diisNum * 2) {
+    maxErr = B[0];
+    bIndex = 0;
+    for (i = 0; i < diisNum; i++) {
+      k = i + (i*(diisNum +1 ));
+      if (B[k] > maxErr) {
+        maxErr = B[k];
+        bIndex = i;
+      }
+    }
+  }
+  else {
+    bIndex = iter % diisNum;
+  }
 
   // update fock vectors
   copyMat(blen, blen, F, fockArr[bIndex]);
@@ -365,6 +392,9 @@ void runDIIS(int blen, int diisNum, int iter,
   // compute new error vector
   errVec(blen, upErr, F, P, S, X, workA, workB);
   copyMat(blen, blen, upErr, errVecs[bIndex]);
+
+  printf("Old B = \n");
+  printMat(diisNum+1, diisNum + 1, false, B);
 
   // update B matrix
   upB(blen, iter, diisNum, errVecs, 
@@ -384,7 +414,6 @@ void runDIIS(int blen, int diisNum, int iter,
     printf("current error matrix: \n");
     printMat(blen,blen,false,errVecs[bIndex]);
 
-
     // copy B matrix because it will be altered by dgesv
     copyMat(diisNum+1,diisNum+1,B,bCopy);
 
@@ -399,11 +428,9 @@ void runDIIS(int blen, int diisNum, int iter,
       coeffs[i] = 0.0;
     }
     coeffs[diisNum] = 1.0;
-    printf("coeffs before solving are \n");
-    printMat(diisNum + 1, 1, false,coeffs);
 
     // solve B matrix
-    info = LAPACKE_dgesv( LAPACK_COL_MAJOR, diisNum + 1, 1, B, 
+    info = LAPACKE_dgesv( LAPACK_COL_MAJOR, diisNum + 1, 1, bCopy, 
           diisNum + 1, ipiv, coeffs, diisNum + 1);
 
     printf("solved coeffs matrix is \n");
@@ -413,7 +440,7 @@ void runDIIS(int blen, int diisNum, int iter,
     newFock(blen, diisNum, coeffs, fockArr, F);
 
     // copy b matrix back
-    copyMat(diisNum+1,diisNum+1,bCopy,B);
+    //copyMat(diisNum+1,diisNum+1,bCopy,B);
 
     printf("F after DIIS\n");
     printMat(blen,blen, false, F);

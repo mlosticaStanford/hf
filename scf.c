@@ -272,7 +272,18 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
   makeX(blen, S, U, sp, X, Xt); 
   transpose(blen, blen, false, false, X, Xt);
 
+  printf("Hcore = \n");
+  printMat(blen,blen,false,Hcore);
+  printf("\n\n");
 
+
+  printf("S = \n");
+  printMat(blen,blen,false,S);
+  printf("\n\n");
+
+  printf("X = \n");
+  printMat(blen,blen,false,X);
+  printf("\n\n");
   //////////////////////////////
   // setup exit conditions for iterations
   //////////////////////////////
@@ -427,9 +438,9 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     iters++;
     oldE = newE;
     // if diis, use errVec for convergence
-    //if (diisNum > 0) {
-    //  notConverged = (errNorm > eTol) && (iters < maxIters);
-    //}
+    if (diisNum > 0) {
+      notConverged = (errNorm > eTol) && (iters < maxIters);
+    }
   }
 
   // calculate total energy
@@ -447,6 +458,11 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     fprintf(fp,"The ground state electronic energy = %f \n", newE); 
     fprintf(fp,"Total ground state energy = %f\n", totalE);
   }
+
+  //printf("Final Fock matrix = \n");
+  //printMat(blen,blen,false,F);
+  //printf("Final P matrix = \n");
+  //printMat(blen,blen,false,P);
 
   // free memory
   free(S); free(U); free(sp); free(X); free(Xt); free(Xtf);

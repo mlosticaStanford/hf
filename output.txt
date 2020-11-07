@@ -1,5 +1,5 @@
 Running SCF calculation
 Maximum iterations reached! 
 At the last iteration, we have that 
-The ground state electronic energy = -0.781379 
-Final ground state energy = -0.468879
+The ground state electronic energy = -1.609661 
+Final ground state energy = -1.297161
