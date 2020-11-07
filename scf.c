@@ -137,9 +137,10 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
   double *Ca, *Cb, *eigsA, *eigsB, *Fa, *Fb, *Fpa, *Fpb;
 
   // diis stuff
-  double errNorm = 1.0;
+  double errNorm = 1.0, errorTol = 0.01;
   double *err, *coeffs;
   double *bCopy;
+  int diisInit = 0;
 
   // rhf diis
   double *errVecs[diisNum], *fockArr[diisNum]; 
@@ -313,7 +314,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
       if (diisNum > 0) {
 
           // run diis with given params
-          runDIIS(blen, diisNum, iters,
+          runDIIS(blen, diisNum, iters, diisInit, errorTol,
             fockArr, errVecs,
             B, coeffs, 
             F, err,
@@ -369,7 +370,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
       if (diisNum > 0) {
 
         // diis for Fock A
-        runDIIS(blen, diisNum, iters,
+        runDIIS(blen, diisNum, iters, diisInit, errorTol,
           fockArrA, errVecsA,
           Ba, coeffs, 
           Fa, err,
@@ -378,7 +379,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
           errNorm);
 
         // diis for Fock B
-        runDIIS(blen, diisNum, iters,
+        runDIIS(blen, diisNum, iters, diisInit, errorTol,
           fockArrB, errVecsB,
           Bb, coeffs, 
           Fb, err,

@@ -343,7 +343,7 @@ double newFock(int blen, int diisNum, double coeffs[],
 // run DIIS
 ///////////////////////////////
 
-void runDIIS(int blen, int diisNum, int iter,
+void runDIIS(int blen, int diisNum, int iter, int diisInit, double errorTol,
   double *fockArr[], double *errVecs[],
   double B[], double coeffs[], 
   double F[], double upErr[], 
@@ -386,66 +386,68 @@ void runDIIS(int blen, int diisNum, int iter,
     bIndex = iter % diisNum;
   }
 
-  // update fock vectors
-  copyMat(blen, blen, F, fockArr[bIndex]);
-
   // compute new error vector
   errVec(blen, upErr, F, P, S, X, workA, workB);
-  copyMat(blen, blen, upErr, errVecs[bIndex]);
 
-  printf("Old B = \n");
-  printMat(diisNum+1, diisNum + 1, false, B);
+  // do we start running diis?
+  if ((errTol(blen, upErr, errorTol) > 0) && diisInit == 0) {
+    diisInit = 1;
+  }
+  else if (diisInit > 0) {
+    // update fock and error vec arrays
+    copyMat(blen, blen, F, fockArr[bIndex]);
+    copyMat(blen, blen, upErr, errVecs[bIndex]);
 
-  // update B matrix
-  upB(blen, iter, diisNum, errVecs, 
-      workA, B);
+    // update B matrix
+    upB(blen, iter, diisNum, errVecs, 
+        workA, B);
 
-  errNorm = dotMat(blen, false, errVecs[bIndex], errVecs[bIndex], workA);
-  printf("errNorm = %f\n", errNorm);
+    errNorm = dotMat(blen, false, errVecs[bIndex], errVecs[bIndex], workA);
+    printf("errNorm = %f\n", errNorm);
 
-  if (iter >= diisNum) {
+    if (iter >= diisNum) {
 
-    printf("current Fock matrix: \n");
-    printMat(blen,blen,false,fockArr[bIndex]);
+      printf("current Fock matrix: \n");
+      printMat(blen,blen,false,fockArr[bIndex]);
 
-    printf("current density matrix: \n");
-    printMat(blen,blen,false,P);
+      printf("current density matrix: \n");
+      printMat(blen,blen,false,P);
 
-    printf("current error matrix: \n");
-    printMat(blen,blen,false,errVecs[bIndex]);
+      printf("current error matrix: \n");
+      printMat(blen,blen,false,errVecs[bIndex]);
 
-    // copy B matrix because it will be altered by dgesv
-    copyMat(diisNum+1,diisNum+1,B,bCopy);
+      // copy B matrix because it will be altered by dgesv
+      copyMat(diisNum+1,diisNum+1,B,bCopy);
 
-    printf("new B = \n");
-    printMat(diisNum+1,diisNum+1,false,B);
+      printf("new B = \n");
+      printMat(diisNum+1,diisNum+1,false,B);
 
-    // initialize coefficients
-    // note that it's a (diisNum + 1) x 1 vector
-    int i, info;
-    int ipiv[diisNum + 1];
-    for (i = 0; i < diisNum; i++) {
-      coeffs[i] = 0.0;
+      // initialize coefficients
+      // note that it's a (diisNum + 1) x 1 vector
+      int i, info;
+      int ipiv[diisNum + 1];
+      for (i = 0; i < diisNum; i++) {
+        coeffs[i] = 0.0;
+      }
+      coeffs[diisNum] = 1.0;
+
+      // solve B matrix
+      info = LAPACKE_dgesv( LAPACK_COL_MAJOR, diisNum + 1, 1, bCopy, 
+            diisNum + 1, ipiv, coeffs, diisNum + 1);
+
+      printf("solved coeffs matrix is \n");
+      printMat(diisNum + 1, 1, false,coeffs);
+
+      // compute the extrapolated Fock Matrix
+      newFock(blen, diisNum, coeffs, fockArr, F);
+
+      // copy b matrix back
+      //copyMat(diisNum+1,diisNum+1,bCopy,B);
+
+      printf("F after DIIS\n");
+      printMat(blen,blen, false, F);
+      printf("\n\n");
     }
-    coeffs[diisNum] = 1.0;
-
-    // solve B matrix
-    info = LAPACKE_dgesv( LAPACK_COL_MAJOR, diisNum + 1, 1, bCopy, 
-          diisNum + 1, ipiv, coeffs, diisNum + 1);
-
-    printf("solved coeffs matrix is \n");
-    printMat(diisNum + 1, 1, false,coeffs);
-
-    // compute the extrapolated Fock Matrix
-    newFock(blen, diisNum, coeffs, fockArr, F);
-
-    // copy b matrix back
-    //copyMat(diisNum+1,diisNum+1,bCopy,B);
-
-    printf("F after DIIS\n");
-    printMat(blen,blen, false, F);
-    printf("\n\n");
-
   }
 }
 
