@@ -101,6 +101,8 @@ double getUrE(int blen, double Pa[], double Pb[], double Pt[],
 void scf(int ur, int nat, int blen, int maxIters, double eTol, 
   nuc *nuclei[], orb *allOrbs[], int nA, int nB, int diisNum) {
 
+  printf("eTol = %.9f\n", eTol);
+
 
   //////////////////////////////
   // open file for output
@@ -137,10 +139,17 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
   double *Ca, *Cb, *eigsA, *eigsB, *Fa, *Fb, *Fpa, *Fpb;
 
   // diis stuff
-  double errNorm = 1.0, errorTol = 0.01;
+  double errorTol = 0.01;
   double *err, *coeffs;
   double *bCopy;
-  int diisInit = 0;
+  int *diisInit;
+  diisInit = (int *)malloc(sizeof(int));
+  *diisInit = 0;
+  double *errNorm; 
+  errNorm = (double *)malloc(sizeof(double));
+  *errNorm = 1.0;
+  
+
 
   // rhf diis
   double *errVecs[diisNum], *fockArr[diisNum]; 
@@ -150,6 +159,11 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
   double *errVecsA[diisNum], *fockArrA[diisNum], 
     *errVecsB[diisNum], *fockArrB[diisNum]; 
   double *Ba, *Bb;
+  double *errNormA, *errNormB; 
+  errNormA = (double *)malloc(sizeof(double));
+  errNormB = (double *)malloc(sizeof(double));
+  *errNormA = 1.0;
+  *errNormB = 1.0;
 
 
   // rhf
@@ -199,6 +213,10 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     Fpa = (double *)malloc(sizeof(double)*blen*blen);
     Fpb = (double *)malloc(sizeof(double)*blen*blen);
 
+    // density mats for uhf must have different initial guesses
+    Pa[0] = .5  * (nA+nB);
+    Pb[blen*blen - 1] = .5  * (nA+nB);
+
     if (diisNum > 0) {
 
       // initialize errVec arrays
@@ -220,26 +238,6 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
       initB(diisNum, Bb);
       initB(diisNum, bCopy);
     }
-
-    //int i,j,k,l;
-
-    //for (i = 0; i < blen; i++) {
-    //  for (j = 0; j <= i; j++) {
-    //    
-    //    k = i + j*blen;
-    //    l = i*blen + j;
-
-    //    if (i == j && j == 0) {
-    //      Pa[k] = 1.0;
-    //      Pb[k] = 1.0;
-    //    }
-
-    //    else {
-    //      Pa[k] = Pa[l] = 0.0;
-    //      Pb[k] = Pb[l] = 0.0;
-    //    }
-    //  }
-    //} 
   }
   
 
@@ -284,6 +282,10 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
 
   printf("X = \n");
   printMat(blen,blen,false,X);
+  printf("\n\n");
+
+  printf("T = \n");
+  printMat(blen,blen,false,T);
   printf("\n\n");
   //////////////////////////////
   // setup exit conditions for iterations
@@ -376,7 +378,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
           Fa, err,
           Pa, S, X,
           workA, workB, bCopy,
-          errNorm);
+          errNormA);
 
         // diis for Fock B
         runDIIS(blen, diisNum, iters, diisInit, errorTol,
@@ -385,7 +387,7 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
           Fb, err,
           Pb, S, X,
           workA, workB, bCopy, 
-          errNorm);
+          errNormB);
      } 
 
       // compute Fp's
@@ -427,6 +429,8 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
       newE = getUrE(blen, Pa, Pb, Pt,
         Fa, Fb, Hcore); 
 
+      printf("current ur E = %f\n", newE);
+
       // update P's
       upP(ur, blen, nA, Pa, Ca);  
       upP(ur, blen, nB, Pb, Cb);  
@@ -440,7 +444,18 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     oldE = newE;
     // if diis, use errVec for convergence
     if (diisNum > 0) {
-      notConverged = (errNorm > eTol) && (iters < maxIters);
+      if (!ur) {
+        printf("errNorm for convergence = %.9f\n", *errNorm);
+        notConverged = (*errNorm > eTol) && (iters < maxIters);
+      }
+      else {
+        printf("errNormA for convergence = %.9f\n", *errNormA);
+        printf("errNormB for convergence = %.9f\n", *errNormB);
+        notConverged = (*errNorm > eTol) && (iters < maxIters);
+        notConverged = (*errNorm > eTol) && (iters < maxIters);
+        notConverged = ((*errNormA > eTol) || (*errNormB > eTol)) 
+          && (iters < maxIters);
+      }
     }
   }
 

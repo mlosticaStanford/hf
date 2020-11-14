@@ -108,11 +108,11 @@ double newFock(int blen, int diisNum, double coeffs[],
 // run DIIS
 ///////////////////////////////
 
-void runDIIS(int blen, int diisNum, int iter, int diisInit, double errorTol,
+void runDIIS(int blen, int diisNum, int iter, int *diisInit, double errorTol,
   double *fockArr[], double *errVecs[],
   double B[], double coeffs[], 
   double F[], double upErr[], 
   double P[], double S[], double X[],
-  double workA[], double workB[], double bCopy[], double errNorm);
+  double workA[], double workB[], double bCopy[], double *errNorm);
 
 //*****************************************************************//

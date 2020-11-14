@@ -10,8 +10,8 @@ $calcParams
 
 basis = STO-3G
 uhf = 1
-tol = 0.00001
+tol = 0.000001
 alphaElecs = 1
 betaElecs = 1
-maxIters = 100
-diisNum = 4
+maxIters = 1000
+diisNum = 5

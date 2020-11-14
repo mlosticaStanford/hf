@@ -23,36 +23,37 @@
 void errVec(int blen, double e[], double F[], double P[], 
   double S[], double X[], double workA[], double workB[]) {
 
-  // compute XtFPS, store it in workB
-	cblas_dgemm(CblasColMajor, CblasTrans, CblasNoTrans,
+  // compute FPS, store it in workB
+	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
-                                        1.0, X, blen, F, blen,
+                                        1.0, F, blen, P, blen,
                                         0.0, workA, blen);
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
-                                        1.0, workA, blen, P, blen,
+                                        1.0, workA, blen, S, blen,
                                         0.0, workB, blen);
-	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
-                                        blen, blen, blen,
-                                        1.0, workB, blen, S, blen,
-                                        0.0, workA, blen);
 
-  // compute SPFX, store it in e
+  // compute SPF, store it in e
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
                                         1.0, S, blen, P, blen,
-                                        0.0, workB, blen);
+                                        0.0, workA, blen);
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
-                                        1.0, workB, blen, F, blen,
+                                        1.0, workA, blen, F, blen,
                                         0.0, e, blen);
+
+  // compute Xt[FPS - SPF]X, store in e
+  addMats(blen, blen, false, workB, e, 1.0, -1.0, workA);
+
+	cblas_dgemm(CblasColMajor, CblasTrans, CblasNoTrans,
+                                        blen, blen, blen,
+                                        1.0, X, blen, workA, blen,
+                                        0.0, workB, blen);
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
-                                        1.0, e, blen, X, blen,
-                                        0.0, workB, blen);
-
-  // compute FPS - SPF = [comm], store in e
-  addMats(blen, blen, false, workA, workB, 1.0, -1.0, e);
+                                        1.0, workB, blen, X, blen,
+                                        0.0, e, blen);
 
 
   //printf("current err Vec\n");
@@ -80,7 +81,9 @@ int errTol(int blen, double e[], double tol) {
     }
   }
 
+  printf("max error val = %.9f \n\n", maxVal);
   if (maxVal < tol) {
+    printf("yes maxVal is < tol\n");
     return 1;
   }
   else {
@@ -238,26 +241,26 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
 
   // maxErr to get index of worst error
   // epsilon for regularization
-  double maxErr, eps = 0.01;
+  double maxErr, eps = pow(2,-5);
 
   // only update using the new vector
   bIndex = iter % numPrev;
 
-  // update using the worst error 
-  if (iter >= numPrev * 2) {
-    maxErr = B[0];
-    bIndex = 0;
-    for (i = 1; i < numPrev; i++) {
-      k = i + (i*(numPrev +1 ));
-      if (B[k] > maxErr) {
-        maxErr = B[k];
-        bIndex = i;
-      }
-    }
-  }
-  else {
-    bIndex = iter % numPrev;
-  }
+  //// update using the worst error 
+  //if (iter >= numPrev * 2) {
+  //  maxErr = B[0];
+  //  bIndex = 0;
+  //  for (i = 1; i < numPrev; i++) {
+  //    k = i + (i*(numPrev +1 ));
+  //    if (B[k] > maxErr) {
+  //      maxErr = B[k];
+  //      bIndex = i;
+  //    }
+  //  }
+  //}
+  //else {
+  //  bIndex = iter % numPrev;
+  //}
 
   printf("bIndex for upB = %i\n", bIndex);
   
@@ -275,15 +278,9 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
       if (i < numPrev && j < numPrev && (i == bIndex || j == bIndex)) {
         B[k] = bElt(errVecs[i], errVecs[j], blen, work);
 
-        
         // assign off-diag elts
         if (k != l) {
           B[l] = B[k]; 
-        }
-        // regularization
-        else {
-          //B[k] += eps*exp((-1.0 * B[k]) / eps);
-          B[k] += eps;
         }
       } 
 
@@ -296,8 +293,12 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
       } 
       else if (i == numPrev && j == numPrev){
         B[k] = 0.0;
-        //printf("made B[%i] = 0.0\n", k, B[k]);
       }
+
+      ////regularization
+      //if (i < numPrev && j < numPrev && (i == j) && B[k] < eps) {
+      //    B[k] += eps;
+      //}
     }
   }
 }
@@ -343,12 +344,12 @@ double newFock(int blen, int diisNum, double coeffs[],
 // run DIIS
 ///////////////////////////////
 
-void runDIIS(int blen, int diisNum, int iter, int diisInit, double errorTol,
+void runDIIS(int blen, int diisNum, int iter, int *diisInit, double errorTol,
   double *fockArr[], double *errVecs[],
   double B[], double coeffs[], 
   double F[], double upErr[], 
   double P[], double S[], double X[],
-  double workA[], double workB[], double bCopy[], double errNorm) {
+  double workA[], double workB[], double bCopy[], double *errNorm) {
   // blen, length of basis
   // diisNum, number of previous Fock matrices to use
   // iter, iteration of SCF
@@ -390,10 +391,20 @@ void runDIIS(int blen, int diisNum, int iter, int diisInit, double errorTol,
   errVec(blen, upErr, F, P, S, X, workA, workB);
 
   // do we start running diis?
-  if ((errTol(blen, upErr, errorTol) > 0) && diisInit == 0) {
-    diisInit = 1;
+  //if ((errTol(blen, upErr, errorTol) > 0) && (*diisInit == 0) && (iter > diisNum)) {
+  if ((errTol(blen, upErr, errorTol) > 0) && (*diisInit == 0) && (iter > 10)) {
+    printf("iter in diis = %i\n", iter);
+  //if ((errTol(blen, upErr, errorTol) > 0) && (*diisInit == 0)) {
+    *diisInit = 1;
+    printf("diisInit is changed, it is now %i\n\n", *diisInit);
   }
-  else if (diisInit > 0) {
+  //else if ((errTol(blen, upErr, errorTol) == 0) && (*diisInit > 0)) {
+  //  *diisInit = 0;
+  //  printf("had to stop diis, diisInit = %i\n\n", *diisInit);
+  //}
+  else if (*diisInit > 0) {
+    
+    printf("doing diis\n");
     // update fock and error vec arrays
     copyMat(blen, blen, F, fockArr[bIndex]);
     copyMat(blen, blen, upErr, errVecs[bIndex]);
@@ -402,8 +413,8 @@ void runDIIS(int blen, int diisNum, int iter, int diisInit, double errorTol,
     upB(blen, iter, diisNum, errVecs, 
         workA, B);
 
-    errNorm = dotMat(blen, false, errVecs[bIndex], errVecs[bIndex], workA);
-    printf("errNorm = %f\n", errNorm);
+    *errNorm = dotMat(blen, false, errVecs[bIndex], errVecs[bIndex], workA);
+    printf("errNorm = %.9f\n", *errNorm);
 
     if (iter >= diisNum) {
 
