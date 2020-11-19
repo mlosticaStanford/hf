@@ -23,21 +23,17 @@
 void errVec(int blen, double e[], double F[], double P[], 
   double S[], double X[], double workA[], double workB[]) {
 
-  // compute XtFPS, store it in workB
-	cblas_dgemm(CblasColMajor, CblasTrans, CblasNoTrans,
-                                        blen, blen, blen,
-                                        1.0, X, blen, F, blen,
-                                        0.0, workA, blen);
+  // compute FPS, store it in workA
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
-                                        1.0, workA, blen, P, blen,
+                                        1.0, F, blen, P, blen,
                                         0.0, workB, blen);
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
                                         1.0, workB, blen, S, blen,
                                         0.0, workA, blen);
 
-  // compute SPFX, store it in e
+  // compute SPF, store it in e
 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
                                         blen, blen, blen,
                                         1.0, S, blen, P, blen,
@@ -46,14 +42,19 @@ void errVec(int blen, double e[], double F[], double P[],
                                         blen, blen, blen,
                                         1.0, workB, blen, F, blen,
                                         0.0, e, blen);
-	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
+
+  // compute FPS - SPF = [comm], store in workB
+  addMats(blen, blen, false, workA, e, 1.0, -1.0, workB);
+
+  // Xt[comm]X, store it in e
+	cblas_dgemm(CblasColMajor, CblasTrans, CblasNoTrans,
                                         blen, blen, blen,
-                                        1.0, e, blen, X, blen,
-                                        0.0, workB, blen);
-
-  // compute FPS - SPF = [comm], store in e
-  addMats(blen, blen, false, workA, workB, 1.0, -1.0, e);
-
+                                        1.0, X, blen, workB, blen,
+                                        0.0, workA, blen);
+	cblas_dgemm(CblasColMajor, CblasTrans, CblasNoTrans,
+                                        blen, blen, blen,
+                                        1.0, workA, blen, X, blen,
+                                        0.0, e, blen);
 
   //printf("current err Vec\n");
   //printMat(blen,blen, false,e);
@@ -211,32 +212,33 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
 
   // maxErr to get index of worst error
   // epsilon for regularization
-  double maxErr, eps = 0.01;
+  double maxErr, eps = pow(2,-12);
 
   // only update using the new vector
   bIndex = iter % numPrev;
 
   // update using the worst error 
-  //if (iter >= numPrev) {
-  //  maxErr = B[0];
-  //  bIndex = 0;
-  //  for (i = 1; i < numPrev; i++) {
-  //    k = i + (i*(numPrev +1 ));
-  //    if (B[k] > maxErr) {
-  //      maxErr = B[k];
-  //      bIndex = i;
-  //    }
-  //  }
-  //}
-  //else {
-  //  bIndex = iter;
-  //}
+  if (iter >= numPrev * 2) {
+    maxErr = B[0];
+    bIndex = 0;
+    for (i = 1; i < numPrev; i++) {
+      k = i + (i*(numPrev +1 ));
+      if (B[k] > maxErr) {
+        maxErr = B[k];
+        bIndex = i;
+      }
+    }
+    printf("maxDiagElt of B = %f\n", maxErr);
+  }
+  else {
+    bIndex = iter % numPrev;
+  }
 
   printf("bIndex for upB = %i\n", bIndex);
   
 
   for (i = 0; i < numPrev + 1; i++) {
-    for (j = 0; j <= i; j++) {
+    for (j = 0; j <= numPrev + 1; j++) {
 
       // 1D index
       k = i + (j*(numPrev +1 ));
@@ -245,16 +247,17 @@ void upB(int blen, int iter, int numPrev, double *errVecs[],
       // work in the area of matrix that's not
       // the bottom row
       // or the rightmost column
-      if (i < numPrev && j < numPrev && i == bIndex) {
+      if (i < numPrev && j < numPrev 
+            && ((i == bIndex) || (j == bIndex))) {
         B[k] = bElt(errVecs[i], errVecs[j], blen, work);
 
         
-        // assign off-diag elts
-        if (k != l) {
-          B[l] = B[k]; 
-        }
+        //// assign off-diag elts
+        //if (k != l) {
+        //  B[l] = B[k]; 
+        //}
         // regularization
-        else {
+        if ((B[k] < eps) && (i == j)){
           //B[k] += eps*exp((-1.0 * B[k]) / eps);
           B[k] += eps;
         }
@@ -343,21 +346,21 @@ void runDIIS(int blen, int diisNum, int iter,
 
   bIndex = iter % diisNum;
 
-  //// update using the worst error 
-  //if (iter >= diisNum) {
-  //  maxErr = B[0];
-  //  bIndex = 0;
-  //  for (i = 0; i < diisNum; i++) {
-  //    k = i + (i*(diisNum +1 ));
-  //    if (B[k] > maxErr) {
-  //      maxErr = B[k];
-  //      bIndex = i;
-  //    }
-  //  }
-  //}
-  //else {
-  //  bIndex = iter;
-  //}
+  // update using the worst error 
+  if (iter >= diisNum * 2) {
+    maxErr = B[0];
+    bIndex = 0;
+    for (i = 0; i < diisNum; i++) {
+      k = i + (i*(diisNum +1 ));
+      if (B[k] > maxErr) {
+        maxErr = B[k];
+        bIndex = i;
+      }
+    }
+  }
+  else {
+    bIndex = iter % diisNum;
+  }
 
   // update fock vectors
   copyMat(blen, blen, F, fockArr[bIndex]);
@@ -371,7 +374,7 @@ void runDIIS(int blen, int diisNum, int iter,
       workA, B);
 
   errNorm = dotMat(blen, false, errVecs[bIndex], errVecs[bIndex], workA);
-  printf("errNorm = %f\n", errNorm);
+  printf("errNorm = %.9f\n", errNorm);
 
   if (iter >= diisNum) {
 
@@ -399,8 +402,6 @@ void runDIIS(int blen, int diisNum, int iter,
       coeffs[i] = 0.0;
     }
     coeffs[diisNum] = 1.0;
-    printf("coeffs before solving are \n");
-    printMat(diisNum + 1, 1, false,coeffs);
 
     // solve B matrix
     info = LAPACKE_dgesv( LAPACK_COL_MAJOR, diisNum + 1, 1, B, 

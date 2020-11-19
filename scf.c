@@ -198,6 +198,9 @@ void scf(int ur, int nat, int blen, int maxIters, double eTol,
     Fpa = (double *)malloc(sizeof(double)*blen*blen);
     Fpb = (double *)malloc(sizeof(double)*blen*blen);
 
+    Pa[0] = .50625 * (nA+nB);
+    Pb[(blen*blen) - 1] = .49375 * (nA+nB);
+
     if (diisNum > 0) {
 
       // initialize errVec arrays
